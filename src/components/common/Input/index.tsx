@@ -19,9 +19,16 @@ export const Input: React.FC<InputSearch>  = ({
     onClick,
     ...rest
   }) => {
+
+    const enterPress = (event: any) => {
+      if (event.key === "Enter") { 
+        onClick();
+      }
+    }
+
     return (
       <S.Common className={className}>
-        <input {...rest} />
+        <input {...rest} onKeyDown={enterPress}/>
         <HiOutlineSearch onClick={onClick}/>
       </S.Common>
     );

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import * as S from "./styles";
 
 import { Input } from "../../../common/Input";
-import PopMovies from "./components/PopMovies";
-import MoviesList from "./components/MoviesList";
+import MoviesList from "./MoviesList";
+
 import { useTMDA } from "../../../../providers/Movies";
 
 
@@ -26,7 +26,6 @@ const Main: React.FC = () => {
         }}
         />
       </S.Section>
-      <PopMovies />
       <S.Center>
         <MoviesList />
         <S.Pagination 

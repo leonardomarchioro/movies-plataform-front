@@ -8,18 +8,31 @@ interface IValues {
     totalPages?: number;
     currentPage?: number;
   };
+  
+  movieModal: {
+    active: boolean,
+    movie?: MovieTDMA
+  }
   findMovies: (search?: string, page?: number) => Promise<void>;
   resetPagination: () => void;
+  setMovieModal: React.Dispatch<React.SetStateAction<{
+    active: boolean;
+    movie?: MovieTDMA | undefined;
+}>>
 }
 
 export const TMDAContext = React.createContext({} as IValues);
 
 function TMDAProvider({ children }: { children: React.ReactNode }) {
   const [movies, setMovies] = useState<MovieTDMA[]>([]);
-  const [pagination, setPagination] = useState({})
+  const [pagination, setPagination] = useState<IValues['pagination']>({
+    totalPages: 1,
+    currentPage: 1
+  })
+  const [movieModal, setMovieModal] = useState<IValues['movieModal']>({ active: false });
 
   const findMovies = useCallback(async (search?: string, page?: number) => {
-    console.log({page});
+    
     if (search) {
       const data = await getSearchMovie(search, page);
       setMovies(data.results);
@@ -37,13 +50,19 @@ function TMDAProvider({ children }: { children: React.ReactNode }) {
       })
     }
   }, []);
+
   useEffect(() => {
     findMovies();
   }, []);
 
-  const resetPagination = () => setPagination({})
 
-  return <TMDAContext.Provider value={{ movies, pagination, resetPagination, findMovies }}>{children}</TMDAContext.Provider>;
+
+  const resetPagination = () => setPagination({
+    totalPages: 1,
+    currentPage: 1
+  })
+
+  return <TMDAContext.Provider value={{ movies, pagination, resetPagination, findMovies, movieModal, setMovieModal }}>{children}</TMDAContext.Provider>;
 }
 
 export default TMDAProvider;
