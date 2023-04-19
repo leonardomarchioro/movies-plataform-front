@@ -9,3 +9,13 @@ export const Container = styled.ul`
     gap: 1rem;
     padding: 1rem;
 `
+export const EmptyContainer = styled.div`
+    display: flex;
+    align-items: center;
+    height: 45vh;
+
+    font-weight: 600;
+    font-size: 2rem;
+    color: ${({ theme }) => theme.text.secondary};
+
+`

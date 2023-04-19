@@ -1,9 +1,16 @@
 import React from 'react';
-
 import * as S from './styles';
 
+import { useNavigate } from 'react-router-dom';
+
 const Logo: React.FC = () => {
-  return <S.Logo>
+
+  const navigate = useNavigate()
+  const goHome = () => {
+    navigate("/");
+  };
+
+  return <S.Logo onClick={goHome}>
     Movies
   </S.Logo>;
 }

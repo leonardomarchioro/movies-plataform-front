@@ -14,20 +14,3 @@ export const Header = styled.header`
     gap: 1rem;
 `;
 
-export const Container = styled.div`
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
-    width: 20rem;
-
-    .user-buttons {
-        width: 10rem;
-    }
-`;
-
-export const Text = styled.h3`
-    width: auto;
-`

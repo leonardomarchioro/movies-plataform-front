@@ -43,10 +43,11 @@ export const InputFormCommon: React.FC<InputProps> = ({
   ...rest
 }) => {
   return (
-    <S.Common className={className}>
+    <S.Form error={!!error} className={className}>
       <span>{label}</span>
-      <input {...rest} />
-    </S.Common>
+      <input {...register(name)} {...rest} />
+      <div>{!!error && <span>{error}</span>}</div>
+    </S.Form>
   );
 };
 
@@ -59,9 +60,10 @@ export const InputFormPassword: React.FC<InputProps> = ({
   ...rest
 }) => {
   return (
-    <S.Common className={className}>
+    <S.Form error={!!error} className={className}>
       <span>{label}</span>
-      <input {...rest} />
-    </S.Common>
+      <input {...register(name)} {...rest} />
+      <div>{!!error && <span>{error}</span>}</div>
+    </S.Form>
   );
 };

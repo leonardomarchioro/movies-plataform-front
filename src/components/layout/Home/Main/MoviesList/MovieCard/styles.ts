@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Card = styled.div`
   width: 50%;
   max-width: 30rem;
+  min-width: 20rem;
   max-height: 20rem;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.background.secondary};

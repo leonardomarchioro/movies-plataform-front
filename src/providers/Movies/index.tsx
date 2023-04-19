@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { getAllMovie, getSearchMovie } from "../../services/moviesDatabase";
+import { getAllMovie, getSearchMovie } from "../../services/movies";
 import { MovieTDMA } from "../../types/Movies-TDMA";
 
 interface IValues {
@@ -25,11 +25,11 @@ export const TMDAContext = React.createContext({} as IValues);
 
 function TMDAProvider({ children }: { children: React.ReactNode }) {
   const [movies, setMovies] = useState<MovieTDMA[]>([]);
+  const [movieModal, setMovieModal] = useState<IValues['movieModal']>({ active: false });
   const [pagination, setPagination] = useState<IValues['pagination']>({
     totalPages: 1,
     currentPage: 1
   })
-  const [movieModal, setMovieModal] = useState<IValues['movieModal']>({ active: false });
 
   const findMovies = useCallback(async (search?: string, page?: number) => {
     
@@ -54,8 +54,6 @@ function TMDAProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     findMovies();
   }, []);
-
-
 
   const resetPagination = () => setPagination({
     totalPages: 1,
