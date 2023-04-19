@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { MovieTDMA } from '../../../../../types/Movies-TDMA';
+import React from 'react';
 import { useTMDA } from '../../../../../providers/Movies';
 import MovieCard from './MovieCard';
 
