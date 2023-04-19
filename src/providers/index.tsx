@@ -1,19 +1,20 @@
-import * as React from 'react'
-import ThemeStyleProvider from './Theme'
-import TMDAProvider from './Movies'
-import UserProvider from './Users'
+import * as React from "react";
 
-const Providers: React.FC<{children: React.ReactNode}> = ({children}) => 
-{
-    return (
-        <ThemeStyleProvider>
-            <UserProvider>     
-            <TMDAProvider>
-            {children}
-            </TMDAProvider>
-            </UserProvider>
-        </ThemeStyleProvider>
-    )
-}
+import ThemeStyleProvider from "./Theme";
+import TMDAProvider from "./Movies";
+import UserProvider from "./Users";
+import RentProvider from "./Rent";
 
-export default Providers
+const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <ThemeStyleProvider>
+      <UserProvider>
+        <TMDAProvider>
+          <RentProvider>{children}</RentProvider>
+        </TMDAProvider>
+      </UserProvider>
+    </ThemeStyleProvider>
+  );
+};
+
+export default Providers;

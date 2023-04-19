@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as S from "./styles";
-import { useQuery } from "../../../../hooks/useQuery";
+import useQuery from "../../../../hooks/useQuery";
 import SignIn from "./Forms/SignIn";
 import Register from "./Forms/Register";
 

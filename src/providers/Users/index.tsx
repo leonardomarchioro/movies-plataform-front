@@ -3,6 +3,7 @@ import { UserProfile, UserRegister, UserSignIn } from "../../types/User";
 import { findProfile, register, signIn } from "../../services/users";
 import { toast } from "react-toastify";
 
+import useLocalStorage from "../../hooks/useLocalStorage";
 interface IValues {
   logIn: (data: UserSignIn) => Promise<void>;
   logOut: () => void;
@@ -14,8 +15,11 @@ interface IValues {
 export const UserContext = React.createContext({} as IValues);
 
 function UserProvider({ children }: { children: React.ReactNode }) {
+
+  const [ storageToken, setStorageToken ] = useLocalStorage("token", "")
+
   const [profile, setProfile] = useState<UserProfile>({});
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string>(storageToken);
 
   const logIn = async (data: UserSignIn) => {
     const result = await signIn(data);
@@ -29,12 +33,14 @@ function UserProvider({ children }: { children: React.ReactNode }) {
     } else {
       toast.success("Login feito com sucesso")
       setToken(result.token);
+      setStorageToken(result.token)
     }
   };
 
   const logOut = () => {
     setProfile({});
     setToken("");
+    setStorageToken("");
   };
 
   const registerUser = async (data: UserRegister) => {
