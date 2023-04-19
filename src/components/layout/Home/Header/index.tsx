@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   };
 
   const myMovies = () => {
-    navigate("/myMovies");
+    navigate("/my-movies");
   };
 
   return (

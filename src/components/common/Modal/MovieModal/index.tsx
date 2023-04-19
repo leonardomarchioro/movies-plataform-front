@@ -8,6 +8,7 @@ import { ButtonPrimary } from '../../Buttons';
 
 import { validateImg } from '../../../../helpers/validateImg';
 import { formatData } from "../../../../helpers/formatData"
+import { useRents } from '../../../../providers/Rent';
 
 const MovieModal: React.FC = () => {
 
@@ -20,18 +21,24 @@ const MovieModal: React.FC = () => {
     close={close}
     show={movieModal.active}
   >
-    <ModalContent {...movieModal.movie}/>
+    <ModalContent {...movieModal.movie} close={close}/>
   </Modal>
   );
 }
 
 export default MovieModal;
 
-const ModalContent: React.FC<MovieTDMA> = ({ 
+interface Props extends MovieTDMA {
+  close: () => void
+}
+
+const ModalContent: React.FC<Props> = ({ 
+  id,
   title, 
   backdrop_path, 
   overview,
-  release_date 
+  release_date,
+  close 
 }) => {
 
   const [imgPath, setImgPath] = useState<string>()
@@ -46,6 +53,13 @@ const ModalContent: React.FC<MovieTDMA> = ({
         validate()
     }, [])
 
+    const { rentNewMovie } = useRents()
+
+    const rentMovie = useCallback(async () => {
+      await rentNewMovie(Number(id))
+      close();
+    }, [rentNewMovie])
+
     return (
         <S.Root>
             <S.Header>
@@ -57,7 +71,7 @@ const ModalContent: React.FC<MovieTDMA> = ({
               <S.Span>Lançamento: {formatData(String(release_date))}</S.Span>
             </S.Conetent>
             <S.Footer>
-                <ButtonPrimary>Alugar</ButtonPrimary>
+                <ButtonPrimary onClick={rentMovie}>Alugar</ButtonPrimary>
             </S.Footer>
         </S.Root>
     )
