@@ -1,56 +1,54 @@
 import styled from "styled-components";
 
 export const Common = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
+  border-color: transparent;
+  background-color: ${({ theme }) => theme.background.primary};
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  > input {
     width: 100%;
     height: 100%;
-    padding: 0.3rem 0.5rem;
-    border-radius: 0.4rem;
     border-color: transparent;
-    background-color: ${({ theme }) => theme.background.primary};
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    font-weight: 500;
+    background-color: transparent;
+    color: ${({ theme }) => theme.text.primary};
 
-    > input {
-        width: 100%;
-        height: 100%;
-        border-color: transparent;
-        font-weight: 500;
-        background-color: transparent;
-        color: ${({ theme }) => theme.text.primary};
+    &::placeholder {
+      color: ${({ theme }) => theme.text.secondary};
 
-      &::placeholder {
-        color: ${({ theme }) => theme.text.secondary};
-
-        font-weight: 400;
-        font-size: 16px;
-      }
+      font-weight: 400;
+      font-size: 16px;
     }
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.background.default};
+  }
+  &:focus {
+    background-color: ${({ theme }) => theme.background.default};
+    border-color: ${({ theme }) => theme.background.primary};
+  }
+
+  > svg {
+    cursor: pointer;
+    height: 100%;
+    color: ${({ theme }) => theme.primary.dark};
 
     &:hover {
-      background-color: ${({ theme }) =>
-        theme.background.default};
+      transform: scale(1.1);
     }
-    &:focus {
-      background-color: ${({ theme }) =>
-        theme.background.default};
-      border-color: ${({ theme }) => theme.background.primary};
-    }
-
-    > svg {
-        cursor: pointer;
-        height: 100%;
-        color: ${({ theme }) => theme.primary.dark};
-
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
+  }
 `;
 
 export const Form = styled.div`
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
@@ -92,21 +90,29 @@ export const Form = styled.div`
     }
 
     &:hover {
-      background-color: ${({ theme }) =>
-        theme.background.default};
+      background-color: ${({ theme }) => theme.background.default};
     }
     &:focus {
-      background-color: ${({ theme }) =>
-        theme.background.default};
+      background-color: ${({ theme }) => theme.background.default};
       border-color: ${({ theme }) => theme.background.primary};
     }
   }
-  > div {
-    height: 10px;
 
-    > span {
-      font-size: 12px;
-      color: ${({ theme }) => theme.error.main};
-    }
+  > svg {
+    align-self: flex-end;
+    margin-right: 8px;
+    position: relative;
+    top: -28px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text.secondary};
   }
-`
+`;
+
+export const ErrorContainer = styled.div`
+  height: 10px;
+
+  > span {
+    font-size: 12px;
+    color: ${({ theme }) => theme.error.main};
+  }
+`;

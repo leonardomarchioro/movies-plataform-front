@@ -9,7 +9,6 @@ import { useUsers } from "./providers/Users";
 function App() {
 
   const { token } = useUsers();
-  console.log({ token })
 
   return (
     <BrowserRouter>

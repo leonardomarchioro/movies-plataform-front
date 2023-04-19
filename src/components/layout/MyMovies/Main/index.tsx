@@ -7,7 +7,7 @@ import { useRents } from "../../../../providers/Rent";
 
 const Main: React.FC = () => {
   const { rentMovies } = useRents();
-console.log({ rentMovies });
+
   return (
     <S.Container>
       {rentMovies.length ? (
